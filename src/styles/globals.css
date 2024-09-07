@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 53 31% 95%;
+  --foreground: 60 4% 11%;
+  --primary: 60 4% 11%;
+  --primary-foreground: 210 40% 98%;
+  --accent: 224 100% 77%;
+  --accent-foreground: 225 100 100;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 53 31% 95%;
+    --foreground: 60 4% 11%;
+    --primary: 60 4% 11%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 224 100% 77%;
+    --accent-foreground: 225 100 100;
+  }
+}
+
+@layer base {
+  @font-face {
+    font-display: swap;
+    font-family: 'SUSE';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/suse-latin-regular.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: 'SUSE';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/suse-latin-700.woff2') format('woff2');
+  }
+
+  * {
+    @apply scrollbar-hidden box-border text-balance;
+  }
+
+  body {
+    @apply min-h-svh bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
