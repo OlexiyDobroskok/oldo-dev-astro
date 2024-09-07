@@ -1,0 +1,52 @@
+---
+import HeroImage from './hero-image.astro';
+---
+
+<section class="relative flex min-h-svh items-end justify-center">
+  <div
+    class="mask relative z-10 w-full overflow-hidden pb-10 leading-none text-accent"
+  >
+    <div
+      class="scrolling flex w-max flex-nowrap gap-4 text-9xl antialiased md:text-[10rem] lg:text-[14rem] 2xl:text-[18rem]"
+    >
+      <h2>Oleksii Dobroskok</h2>
+      <span aria-hidden="true">-</span>
+      <h2 aria-hidden="true">Oleksii Dobroskok</h2>
+      <span aria-hidden="true">-</span>
+    </div>
+  </div>
+  <div class="absolute h-full"><HeroImage /></div>
+</section>
+
+<script>
+  
+</script>
+
+<style>
+  .scrolling {
+    animation: scroll 20s forwards linear infinite;
+  }
+
+  .mask {
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 10%,
+      white 90%,
+      transparent
+    );
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+</style>
