@@ -1,0 +1,22 @@
+---
+import type { MenuLink } from '../types';
+
+interface Props extends MenuLink {
+  isActive: boolean;
+}
+
+const { href, title, isActive } = Astro.props;
+---
+
+<li
+  class="relative block px-2 py-2 text-lg capitalize transition-transform duration-75"
+  data-animation="magnetic-element"
+>
+  <a href={href}>{title}</a>
+  <span
+    class:list={[
+      'absolute left-1/2 block -translate-x-1/2 rounded-md bg-accent transition-transform delay-75',
+      { 'h-2 w-2': isActive },
+      { 'h-0 w-0': !isActive },
+    ]}></span>
+</li>

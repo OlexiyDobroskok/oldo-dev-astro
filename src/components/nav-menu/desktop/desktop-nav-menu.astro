@@ -1,0 +1,28 @@
+---
+import MenuItem from './menu-item.astro';
+import type { MenuLink } from '../types';
+
+interface Props {
+  menu: MenuLink[];
+}
+
+const { menu } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<nav>
+  <ul class="flex gap-4">
+    {
+      menu.map((menuLink) => (
+        <MenuItem
+          href={menuLink.href}
+          title={menuLink.title}
+          isActive={
+            pathname === menuLink.href ||
+            pathname.startsWith(`${menuLink.href}/`)
+          }
+        />
+      ))
+    }
+  </ul>
+</nav>
