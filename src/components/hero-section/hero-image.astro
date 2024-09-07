@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+
+import heroImage from '@/assets/images/hero.png';
+import heroImageMobile from '@/assets/images/heroMobile.png';
+---
+
+<Image
+  class="h-full object-cover sm:hidden"
+  src={heroImageMobile}
+  alt="Portfolio Owner"
+  format="avif"
+  width={430}
+  densities={[1.5, 2]}
+/>
+<Image
+  class="hidden h-full object-cover md:inline-block lg:hidden"
+  src={heroImageMobile}
+  alt="Portfolio Owner"
+  format="avif"
+  width={834}
+  densities={[1.5, 2]}
+/>
+<Image
+  class="hidden h-full translate-x-[10%] object-contain lg:inline-block"
+  src={heroImage}
+  alt="Portfolio Owner"
+  format="avif"
+  width={1100}
+  densities={[1.5, 2]}
+/>
