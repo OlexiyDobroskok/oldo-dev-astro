@@ -5,6 +5,11 @@
     "paths": {
       "@/layouts/*": ["src/layouts/*"],
       "@/components/*": ["src/components/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/animations/*": ["src/animations/*"],
+      "@styles/*": ["src/styles/*"],
+      "@/configs/*": ["src/configs/*"],
+      "@/assets/*": ["src/assets/*"]
     }
   }
 }
