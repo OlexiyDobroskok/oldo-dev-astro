@@ -1,0 +1,92 @@
+---
+import { Logo } from '@/components/logo';
+import type { MenuLink } from '../types';
+import MobileMenuItem from './mobile-menu-item.astro';
+
+interface Props {
+  menu: MenuLink[];
+}
+
+const { menu } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<button
+  id="menu-trigger"
+  class="group peer relative z-50 flex min-h-9 flex-col items-center justify-center gap-1 p-2"
+  data-open="false"
+  aria-label="Open menu"
+>
+  <span
+    class="h-1 w-7 rounded bg-primary transition-transform group-data-[open=true]:absolute group-data-[open=true]:rotate-45 group-data-[open=true]:bg-primary-foreground"
+  ></span>
+  <span
+    class="h-1 w-7 rounded bg-primary transition-opacity duration-75 group-data-[open=true]:bg-primary-foreground group-data-[open=true]:opacity-0"
+  ></span>
+  <span
+    class="h-1 w-7 rounded bg-primary transition-transform group-data-[open=true]:absolute group-data-[open=true]:-rotate-45 group-data-[open=true]:bg-primary-foreground"
+  ></span>
+</button>
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 flex flex-col overflow-hidden bg-primary px-2 pb-10 text-primary-foreground transition-all peer-data-[open=false]:w-0 peer-data-[open=true]:w-full peer-data-[open=false]:opacity-0 peer-data-[open=true]:opacity-100"
+  data-open="false"
+>
+  <header class="pt-2.5">
+    <Logo />
+  </header>
+  <div class="px-2 pt-5">
+    <span class="text-sm uppercase">navigation</span>
+    <nav class="px-4 pt-5">
+      <ul class="flex flex-col gap-2 text-5xl capitalize">
+        {
+          menu.map((menuLink) => (
+            <MobileMenuItem
+              href={menuLink.href}
+              title={menuLink.title}
+              isActive={
+                pathname === menuLink.href ||
+                pathname.startsWith(`${menuLink.href}/`)
+              }
+            />
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="mt-auto px-2 pt-5">
+    <span class="text-sm uppercase">contact me</span>
+    <nav class="pe-4 ps-2 pt-2" aria-label="Social links">
+      <ul class="flex gap-2 text-lg">
+        <li>
+          <a class="px-2 py-1" href="#">Fiverr</a>
+        </li>
+        <li>
+          <a class="px-2 py-1" href="#">Upwork</a>
+        </li>
+        <li>
+          <a class="px-2 py-1" href="#">X</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const triggerButton = document.getElementById(
+    'menu-trigger',
+  ) as HTMLButtonElement;
+
+  const toggleMenu = (event: MouseEvent) => {
+    const button = event.currentTarget as HTMLButtonElement;
+    const menuIsOpen = button.dataset.open === 'true';
+    button.dataset.open = menuIsOpen ? 'false' : 'true';
+    button.ariaLabel = menuIsOpen ? 'Open menu' : 'Close menu';
+    document.body.classList.toggle('overflow-hidden', !menuIsOpen);
+    menuIsOpen
+      ? document.body.removeAttribute('data-lenis-prevent')
+      : document.body.setAttribute('data-lenis-prevent', 'true');
+  };
+
+  triggerButton.addEventListener('click', toggleMenu);
+</script>
