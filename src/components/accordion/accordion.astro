@@ -1,0 +1,43 @@
+---
+import { Icon } from '@/components/icon';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="accordion group " data-open="false">
+  <div class="flex items-center justify-between py-2">
+    <h3 class="text-2xl font-bold">{title}</h3>
+    <span
+      class="transition-transform duration-75 group-data-[open=true]:rotate-180"
+      ><Icon type={'common'} name={'arrowDown'} size={'medium'} /></span
+    >
+  </div>
+
+  <div
+    class="group-data-[open=false]:grid-rows-0 transition-grid-rows grid duration-100 group-data-[open=true]:grid-rows-1"
+  >
+    <p class="overflow-hidden">
+      <slot />
+    </p>
+  </div>
+</section>
+
+<script>
+  const accordions = document.querySelectorAll(
+    '.accordion',
+  ) as NodeListOf<HTMLElement>;
+
+  const toggleAccordion = (event: MouseEvent) => {
+    const accordeon = event.currentTarget as HTMLElement;
+    const isOpen = accordeon.dataset.open === 'true';
+    accordeon.dataset.open = isOpen ? 'false' : 'true';
+  };
+
+  accordions.forEach((accordion) => {
+    accordion.addEventListener('click', toggleAccordion);
+  });
+</script>
