@@ -1,9 +1,36 @@
 ---
+import { Logo } from '@/components/logo';
+import { type MenuLink, MobileNavMenu } from '@/components/nav-menu';
+
+import { routes } from '@/configs/routes';
+
+import '@styles/globals.css';
+import 'lenis/dist/lenis.css';
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+
+const menu: MenuLink[] = [
+  {
+    href: routes.home,
+    title: 'home',
+  },
+  {
+    href: routes.work,
+    title: 'work',
+  },
+  {
+    href: routes.about,
+    title: 'about',
+  },
+  {
+    href: routes.contact,
+    title: 'contact',
+  },
+];
 ---
 
 <!doctype html>
@@ -16,36 +43,32 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-slate-50 ps-1">
-    <slot />
+  <body>
+    <div class="min-h-svh">
+      <header class="flex items-center justify-between px-2 pt-2">
+        <div>
+          <Logo />
+        </div>
+        <div class="lg:hidden">
+          <MobileNavMenu menu={menu} />
+        </div>
+      </header>
+      <main><slot /></main>
+    </div>
   </body>
 </html>
 
-<style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
+<script>
+  import Lenis from 'lenis';
+
+  const lenis = new Lenis({
+    duration: 1.2,
+  });
+
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
   }
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-</style>
+
+  requestAnimationFrame(raf);
+</script>
