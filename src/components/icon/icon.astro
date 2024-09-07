@@ -1,0 +1,34 @@
+---
+import type { CommonIcons } from './icon-names';
+
+const iconSizes = {
+  SM: 'small',
+  MD: 'medium',
+  LG: 'large',
+  CUSTOM: 'custom',
+} as const;
+
+type IconSizes = (typeof iconSizes)[keyof typeof iconSizes];
+
+interface SpritesMap {
+  common: CommonIcons;
+}
+
+interface Props<Group extends keyof SpritesMap> {
+  name: SpritesMap[Group];
+  type: Group;
+  size?: IconSizes;
+}
+
+const { name, type, size } = Astro.props;
+---
+
+<svg
+  class:list={{
+    'h-4 w-4': size === iconSizes.SM,
+    'h-7 w-7': size === iconSizes.MD,
+    'h-9 w-9': size === iconSizes.LG,
+  }}
+>
+  <use href={`/svg-sprites/${type}.svg#${name}`}></use>
+</svg>
