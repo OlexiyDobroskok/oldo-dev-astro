@@ -4,3 +4,7 @@ export const routes = {
   work: '/work',
   contact: '/contact',
 };
+
+export const projectUrls = {
+  furnitureService: "https://www.remont-mebliv.kh.ua/"
+}
