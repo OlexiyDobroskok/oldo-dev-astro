@@ -8,8 +8,11 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<section class="accordion group " data-open="false">
-  <div class="flex items-center justify-between py-2">
+<article
+  class="accordion group px-4 py-2 shadow-sm shadow-primary-foreground/10"
+  data-open="false"
+>
+  <div class="flex items-center justify-between gap-2 pt-2">
     <h3 class="text-2xl font-bold">{title}</h3>
     <span
       class="transition-transform duration-75 group-data-[open=true]:rotate-180"
@@ -18,13 +21,13 @@ const { title } = Astro.props;
   </div>
 
   <div
-    class="group-data-[open=false]:grid-rows-0 transition-grid-rows grid duration-100 group-data-[open=true]:grid-rows-1"
+    class="grid transition-grid-rows duration-100 group-data-[open=false]:grid-rows-0 group-data-[open=true]:grid-rows-1"
   >
-    <p class="overflow-hidden">
+    <p class="overflow-hidden ps-1 pt-2 text-lg">
       <slot />
     </p>
   </div>
-</section>
+</article>
 
 <script>
   const accordions = document.querySelectorAll(
