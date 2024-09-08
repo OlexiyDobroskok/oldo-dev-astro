@@ -1,52 +1,75 @@
 ---
 import { Accordion } from '@/components/accordion';
+import { ActionButton } from '@/components/action-button';
 import { HeroSection } from '@/components/hero-section';
-import { Icon } from '@/components/icon';
+import { projectUrls, routes } from '@/configs/routes';
 import { RootLayout } from '@/layouts/root-layout';
+import furnitureServicePreviewImage from '@/assets/images/furniture-service-preview.png';
+import { ProjectPreviewCard } from '@/components/project-preview-card';
 ---
 
 <RootLayout title="Welcome to Astro.">
   <h1 class="hidden">Front-end developer Oleksii Dobroskok's portfolio</h1>
   <div class="space-y-10">
-    <HeroSection />
-    <article>
-      <h2 class="hidden">Introduction</h2>
-      <p class="text-balance text-center text-2xl leading-8">
-        I specialize in turning your business ideas into fully functional,
-        visually appealing web interfaces. Let's bring your concepts to life
-        with cutting-edge Front-end technologies.
-      </p>
-    </article>
-    <article>
-      <h2>services</h2>
-      <p>I will help you with</p>
-      <div class="bg-primary text-primary-foreground px-4">
-        <Accordion title="Full-Stack Application"
-        >The application handles everything from what your customers see to how
-        your data is managed behind the scenes. I develop solutions that connect
-        the front-end (user interface) with the back-end (databases, servers) to
-        deliver a seamless experience.</Accordion
-      >
-      <Accordion title="Interactive Dashboard"
-        >User-friendly dashboard that help you visualize and manage your
-        business data in one place. These dashboard make it easy to view key
-        information in real-time and make data-driven decisions.</Accordion
-      >
-      <Accordion title="Modern, Mobile-Friendly Website"
-        >The beautiful website look great and work well on all devices - a
-        phone, tablet, or computer.</Accordion
-      >
-      <Accordion title="Fast, SEO-Optimized Website"
-        >The website is designed to load quickly and rank higher on search
-        engines, helping your business get noticed by more potential customers
-        online. A fast, well-optimized website means more traffic and better
-        engagement with your audience.</Accordion
-      >
-      <Accordion title="Landing Page">
-        This page is perfect for promoting products, services, or special
-        offers.</Accordion
-      >
-      </div>
-    </article>
+    <div>
+      <HeroSection />
+    </div>
+    <div class="container space-y-10 px-4">
+      <article>
+        <h2 class="hidden">Introduction</h2>
+        <p class="text-balance text-center text-2xl leading-8">
+          I specialize in turning your business ideas into fully functional,
+          visually appealing web interfaces. Let's bring your concepts to life
+          with cutting-edge Front-end technologies.
+        </p>
+        <div class="flex justify-center pt-5">
+          <ActionButton title="About" href={routes.about} />
+        </div>
+      </article>
+      <article>
+        <h2 class="mb-5 text-center text-3xl uppercase">services I offer</h2>
+        <div class="rounded bg-primary text-primary-foreground">
+          <Accordion title="Full-Stack Application"
+            >The application handles everything from what your customers see to
+            how your data is managed behind the scenes. I develop solutions that
+            connect the front-end (user interface) with the back-end (databases,
+            servers) to deliver a seamless experience.</Accordion
+          >
+          <Accordion title="Interactive Dashboard"
+            >User-friendly dashboard that help you visualize and manage your
+            business data in one place. These dashboard make it easy to view key
+            information in real-time and make data-driven decisions.</Accordion
+          >
+          <Accordion title="Modern, Mobile-Friendly Website"
+            >The beautiful website look great and work well on all devices - a
+            phone, tablet, or computer.</Accordion
+          >
+          <Accordion title="Fast, SEO-Optimized Website"
+            >The website is designed to load quickly and rank higher on search
+            engines, helping your business get noticed by more potential
+            customers online. A fast, well-optimized website means more traffic
+            and better engagement with your audience.</Accordion
+          >
+          <Accordion title="Landing Page">
+            This page is perfect for promoting products, services, or special
+            offers.</Accordion
+          >
+        </div>
+      </article>
+      <article>
+        <h2 class="mb-5 text-center text-3xl uppercase">recent projects</h2>
+        <div class="space-y-8">
+          <div>
+            <ProjectPreviewCard
+              title="Furniture Service"
+              year="2024"
+              image={furnitureServicePreviewImage}
+              localPath="furniture-service"
+              liveHref={projectUrls.furnitureService}
+            />
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </RootLayout>
