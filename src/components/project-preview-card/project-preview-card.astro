@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from '@/components/icon';
+import { routes } from '@/configs/routes';
+
+interface Props {
+  title: string;
+  year: string;
+  image: ImageMetadata;
+  localPath: string;
+  liveHref?: string;
+}
+
+const { title, year, image, localPath, liveHref } = Astro.props;
+---
+
+<article class="flex flex-col-reverse gap-2 pb-2 shadow-sm shadow-primary/20">
+  <div class="flex justify-between gap-2 px-1 text-2xl">
+    <h3>{title}</h3>
+    <span>{year}</span>
+  </div>
+  <div class="relative h-60 w-full bg-primary/20 p-4">
+    <Image
+      class="h-full w-full object-contain"
+      src={image}
+      alt=`${title} website`
+      format="avif"
+      width={440}
+      densities={[1.5, 2]}
+    />
+    <div
+      class="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 gap-2 text-accent-foreground"
+    >
+      {
+        liveHref && (
+          <a
+            href={liveHref}
+            class="rounded bg-accent/50 p-1"
+            aria-label={`Live ${title} website`}
+            target="_blank"
+          >
+            <Icon type={'common'} name={'arrowBlank'} size={'large'} />
+          </a>
+        )
+      }
+      <a
+        href={`${routes.work}/${localPath}`}
+        class="rounded bg-accent/50 p-1"
+        aria-label={`${title} project details`}
+      >
+        <Icon type={'common'} name={'arrowNext'} size={'large'} />
+      </a>
+    </div>
+  </div>
+</article>
