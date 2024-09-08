@@ -44,7 +44,7 @@ const menu: MenuLink[] = [
     <title>{title}</title>
   </head>
   <body>
-    <div class="min-h-svh">
+    <div class="flex min-h-svh flex-col">
       <header class="flex items-center justify-between px-2 pt-2">
         <div>
           <Logo />
@@ -54,6 +54,9 @@ const menu: MenuLink[] = [
         </div>
       </header>
       <main><slot /></main>
+      <footer class="mt-auto pt-20 text-center">
+        © 2023 Oleksii Dobroskok
+      </footer>
     </div>
   </body>
 </html>
