@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+
+import { routes } from '@/configs/routes';
+import { Socials } from '@/components/socials';
+
+import avatar from '@/assets/images/avatar.png';
+---
+
+<footer class="bg-primary py-8 text-primary-foreground">
+  <div class="container flex min-h-64 flex-col px-4">
+    <div class="flex justify-center">
+      <h2 class="flex flex-col text-3xl">
+        <span class="flex items-center gap-3">
+          <span class="order-2 flex-1">Let's work</span>
+          <Image
+            src={avatar}
+            class="h-12 w-12 rounded-full"
+            alt=""
+            format="avif"
+            width={200}
+            height={200}
+            densities={[1.5, 2]}
+          />
+        </span>
+        <span class="flex flex-wrap gap-3">
+          <span>together</span>
+          <a
+            href={routes.contact}
+            class="rounded bg-accent p-4 text-2xl capitalize text-accent-foreground"
+            >Get in touch</a
+          >
+        </span>
+      </h2>
+    </div>
+    <div class="mt-auto">
+      <Socials />
+    </div>
+  </div>
+</footer>
