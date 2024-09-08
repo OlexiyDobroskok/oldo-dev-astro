@@ -2,6 +2,7 @@
 import { Logo } from '@/components/logo';
 import type { MenuLink } from '../types';
 import MobileMenuItem from './mobile-menu-item.astro';
+import { Socials } from '@/components/socials';
 
 interface Props {
   menu: MenuLink[];
@@ -54,21 +55,8 @@ const pathname = Astro.url.pathname;
       </ul>
     </nav>
   </div>
-  <div class="mt-auto px-2 pt-5">
-    <span class="text-sm uppercase">contact me</span>
-    <nav class="pe-4 ps-2 pt-2" aria-label="Social links">
-      <ul class="flex gap-2 text-lg">
-        <li>
-          <a class="px-2 py-1" href="#">Fiverr</a>
-        </li>
-        <li>
-          <a class="px-2 py-1" href="#">Upwork</a>
-        </li>
-        <li>
-          <a class="px-2 py-1" href="#">X</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="mt-auto">
+    <Socials />
   </div>
 </div>
 
