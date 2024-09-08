@@ -11,6 +11,7 @@ const { title } = Astro.props;
 <article
   class="accordion group px-4 py-2 shadow-sm shadow-primary-foreground/10"
   data-open="false"
+  tabindex="0"
 >
   <div class="flex items-center justify-between gap-2 pt-2">
     <h3 class="text-2xl font-bold">{title}</h3>
@@ -34,13 +35,21 @@ const { title } = Astro.props;
     '.accordion',
   ) as NodeListOf<HTMLElement>;
 
-  const toggleAccordion = (event: MouseEvent) => {
+  const toggleAccordion = (event: MouseEvent | KeyboardEvent) => {
     const accordeon = event.currentTarget as HTMLElement;
     const isOpen = accordeon.dataset.open === 'true';
     accordeon.dataset.open = isOpen ? 'false' : 'true';
   };
 
+  const handleKeydown = (event: KeyboardEvent) => {
+    if (event.code === 'Space' || event.key === ' ') {
+      event.preventDefault();
+      toggleAccordion(event);
+    }
+  };
+
   accordions.forEach((accordion) => {
     accordion.addEventListener('click', toggleAccordion);
+    accordion.addEventListener('keydown', handleKeydown);
   });
 </script>
