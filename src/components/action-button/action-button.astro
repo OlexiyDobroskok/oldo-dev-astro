@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  href: string;
+}
+
+const { title, href } = Astro.props;
+---
+
+<a
+  class="min-w-52 rounded bg-accent px-4 py-2 text-center text-xl capitalize text-primary-foreground"
+  href={href}>{title}</a
+>
