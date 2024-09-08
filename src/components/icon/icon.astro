@@ -27,7 +27,7 @@ const { name, type, size } = Astro.props;
   class:list={{
     'h-4 w-4': size === iconSizes.SM,
     'h-7 w-7': size === iconSizes.MD,
-    'h-9 w-9': size === iconSizes.LG,
+    'h-14 w-14': size === iconSizes.LG,
   }}
 >
   <use href={`/svg-sprites/${type}.svg#${name}`}></use>

@@ -4,6 +4,7 @@ export const commonIcons = {
   arrowDown: 'arrowDown',
   arrowPrev: 'arrowPrev',
   arrowNext: 'arrowNext',
+  arrowBlank: 'arrowBlank',
 } as const;
 
 export type CommonIcons = (typeof commonIcons)[keyof typeof commonIcons];
